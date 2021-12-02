@@ -4,30 +4,23 @@ description: Setup your environment with some prerequisites
 
 # Prerequisites
 
-TODO: Install Node, AWS CLI v2, with configured profile
+## Install Node.js
 
-## Our Vision
-
-{% hint style="info" %}
-**Good to know:** a good vision statement shows the long-term goals of the company without getting too deep into strategy, implementation, or product specifics.
-{% endhint %}
-
-Our company vision is to **be the authoritative reference point for environmentally conscious buyers** and to **encourage more sustainable business practices** through curating beautiful, practical, consciously-produced products.
-
-## Our Values
+[Install Node.js](https://nodejs.dev) if you don't already have it on your machine.
 
 {% hint style="info" %}
-**Good to know:** company values are statements about how you approach work; how you treat colleagues, customers and users; and what your company stands for.
+**Good to know:** Use a Node version manager (like [`nvm`](https://github.com/nvm-sh/nvm)`)` to easily switch between different versions of Node.js
 {% endhint %}
 
-### Be Compassionate
+## Install AWS CLI
 
-We treat everyone we encounter with compassion, seeing the humanity behind their problems and experiences.
+Install the lastest version (v2) of the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) if you don't already have it on your machine.
 
-### Be Mindful
+### Configure your AWS CLI profile
 
-We do not take advantage of our users' attention and adopt mindful working practices so that we can create safe spaces both in our working environment and in our products themselves.
+Run the following command to setup AWS credentials that can be used by the AWS CLI tool:
 
-### Research First
+```shell
+aws configure
+```
 
-We challenge our own and others' assumptions through qualitative and quantitative research. Not sure about an idea? Test it.
