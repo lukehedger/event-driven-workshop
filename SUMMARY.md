@@ -9,11 +9,11 @@
 
 ## API Gateway
 
-* [Filing Expenses](api-gateway/filing-expenses.md)
+* [REST API](api-gateway/rest-api.md)
 
 ## Choreograph: EventBridge
 
-* [Page 1](choreograph-eventbridge/page-1.md)
+* [Event Bus and Events](choreograph-eventbridge/event-bus-and-events.md)
 
 ## Orchestrate: Step Functions
 
