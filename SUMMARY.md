@@ -17,4 +17,4 @@
 
 ## Orchestrate: Step Functions
 
-* [Page 2](orchestrate-step-functions/page-2.md)
+* [State Machines](orchestrate-step-functions/state-machines.md)
