@@ -35,7 +35,7 @@ Apps are collections of one or more stacks. These live in the `/bin` directory.
 
 ### Commands
 
-Take a look at the commands available to you in the `scripts` section of the `package.json` file.
+Take a look at the commands available to you in the `scripts` section of the `package.json` file. We will use these later to build and deploy our application.
 
 ### Customise
 
