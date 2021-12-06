@@ -25,17 +25,17 @@ npx cdk init app --language typescript
 
 Take some time to look at the folders and files that have been created for you.
 
-{% hint style="info" %}
-**Good to know:** TODO - "Apps" and "Stacks"
-{% endhint %}
+**CDK Stacks**
+
+Stacks are collections of resources that get transformed into CloudFormation templates and can then be deployed to AWS as CloudFormation Stacks. These live in the `/lib` directory.
+
+**CDK Apps**
+
+Apps are collections of one or more stacks. These live in the `/bin` directory.
 
 ### Commands
 
 Take a look at the commands available to you in the `scripts` section of the `package.json` file.
-
-{% hint style="info" %}
-**Good to know:** TODO - build, synth (cdk.out), deploy
-{% endhint %}
 
 ### Customise
 
