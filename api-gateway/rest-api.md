@@ -30,8 +30,12 @@ import { RestApi } from "@aws-cdk/aws-apigateway";
 export class EDAWorkshopStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
+    
+    const api = new RestApi(this, "EDAWorkshopAPI-YOUR_USER_NAME");
 
-    new RestApi(this, "EDAWorkshopAPI-YOUR_USER_NAME");
+    const dearSanta = api.root.addResource("dear-santa");
+
+    dearSanta.addMethod("POST");
   }
 }
 ```
