@@ -1,7 +1,4 @@
 ---
-cover: >-
-  https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2970&q=80
-coverY: 0
 description: Add an API Gateway REST API
 ---
 
@@ -30,7 +27,7 @@ import { RestApi } from "@aws-cdk/aws-apigateway";
 export class EDAWorkshopStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
-    
+
     const api = new RestApi(this, "EDAWorkshopAPI-YOUR_USER_NAME");
 
     const dearSanta = api.root.addResource("dear-santa");
