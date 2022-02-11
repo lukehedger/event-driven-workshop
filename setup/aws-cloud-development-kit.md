@@ -8,10 +8,10 @@ description: Create a new CDK project
 
 We will use the AWS Cloud Development Kit (or, CDK) to define the cloud infrastructure for our event-driven architecture _"as code"_. You can learn more about the AWS CDK from these resources:
 
-* [https://aws.amazon.com/cdk/](https://aws.amazon.com/cdk/)
-* [https://docs.aws.amazon.com/cdk/latest/guide/getting\_started.html](https://docs.aws.amazon.com/cdk/latest/guide/getting\_started.html)
-* [https://cdkworkshop.com/](https://cdkworkshop.com)
-* [https://explore.skillbuilder.aws/learn/course/internal/view/elearning/1475/aws-cloud-development-kit-primer](https://explore.skillbuilder.aws/learn/course/internal/view/elearning/1475/aws-cloud-development-kit-primer)
+- [https://aws.amazon.com/cdk/](https://aws.amazon.com/cdk/)
+- [https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html](https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html)
+- [https://cdkworkshop.com/](https://cdkworkshop.com)
+- [https://explore.skillbuilder.aws/learn/course/internal/view/elearning/1475/aws-cloud-development-kit-primer](https://explore.skillbuilder.aws/learn/course/internal/view/elearning/1475/aws-cloud-development-kit-primer)
 
 ## `cdk init`
 
@@ -46,7 +46,7 @@ You can then also configure the CDK app to use the default account/region from t
 ```typescript
 #!/usr/bin/env node
 import "source-map-support/register";
-import { App } from "@aws-cdk/core";
+import { App } from "aws-cdk-lib";
 import { EDAWorkshopStack } from "../lib/eda-workshop-stack";
 
 const app = new App();

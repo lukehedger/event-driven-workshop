@@ -10,19 +10,13 @@ We will add an API Gateway REST API with a one endpoint:
 POST /dear-santa { gift: "lego" | "surprise", legoSKU?: "40499", from: "emmet" }
 ```
 
-### Install packages
-
-```shell
-npm install --save-dev --save-exact @aws-cdk/aws-apigateway
-```
-
 ### Update CDK stack
 
 Edit the `lib/eda-workshop-stack.ts` file to look like this - adding your user name to the API name to identify it:
 
 ```typescript
-import { Construct, Stack, StackProps } from "@aws-cdk/core";
-import { RestApi } from "@aws-cdk/aws-apigateway";
+import { Construct, Stack, StackProps } from "aws-cdk-lib";
+import { RestApi } from "aws-cdk-lib/aws-apigateway";
 
 export class EDAWorkshopStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {

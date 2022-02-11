@@ -10,18 +10,16 @@ We will use AWS Step Functions to process our wishlist events. We will have one 
 
 We will use [Express Workflows](https://docs.aws.amazon.com/step-functions/latest/dg/bp-express.html) as these are better suited to event processing than Standard Workflows.
 
-### Install packages
-
-```
-npm install --save-dev --save-exact @aws-cdk/aws-stepfunctions @aws-cdk/aws-stepfunctions-tasks @aws-cdk/aws-s3
-```
-
 ### Add state machine for LEGO gifts
 
 Wishlists that include a LEGO gift need to be sent to the LEGO Event-Driven Elves 🧝‍♂️, via another EventBridge event bus. You will need to ask the Event-Driven Elves for the central event bus ARN. And don't forget to append your _elf source_ (e.g. `elf-luke`) to the event you send so the elves know where the gift request has come from:
 
 ```typescript
-import { StateMachine, StateMachineType, TaskInput } from "@aws-cdk/aws-stepfunctions";
+import {
+  StateMachine,
+  StateMachineType,
+  TaskInput,
+} from "aws-cdk-lib/aws-stepfunctions";
 
 const legoGiftStateMachine = new StateMachine(
   this,
@@ -59,8 +57,17 @@ const legoGiftStateMachine = new StateMachine(
 Wishlists that include a surprise gift can to be sent direct to the workshop, ready for random gift selection, via an S3 bucket. You can ask the Event-Driven Elves for the central bucket ARN too. Again, don't forget to append your elf source to the object!
 
 ```typescript
-import { JsonPath, StateMachine, StateMachineType, TaskInput } from "@aws-cdk/aws-stepfunctions";
-import { CallAwsService, EventBridgePutEvents } from "@aws-cdk/aws-stepfunctions-tasks";
+import { Bucket } from "aws-cdk-lib/aws-s3";
+import {
+  JsonPath,
+  StateMachine,
+  StateMachineType,
+  TaskInput,
+} from "aws-cdk-lib/aws-stepfunctions";
+import {
+  CallAwsService,
+  EventBridgePutEvents,
+} from "aws-cdk-lib/aws-stepfunctions-tasks";
 
 const centralBucket = Bucket.fromBucketArn(
   this,
@@ -101,22 +108,14 @@ surpriseGiftStateMachine.addToRolePolicy(
 
 Now we have our Step Functions workflows, we need to add rules to our event bus, per gift type, to execute the state machines based on the gift requested.
 
-We need to install another package to do this:
-
-```
-npm install --save-dev --save-exact @aws-cdk/aws-events-targets
-```
-
-And then add the two rules to your stack:
-
 ```typescript
 import {
   EventField,
   EventBus,
   Rule,
   RuleTargetInput,
-} from "@aws-cdk/aws-events";
-import { SfnStateMachine } from "@aws-cdk/aws-events-targets";
+} from "aws-cdk-lib/aws-events";
+import { SfnStateMachine } from "aws-cdk-lib/aws-events-targets";
 
 new Rule(this, "EDAWorkshopLegoGiftRule-YOUR_USER_NAME", {
   eventBus: eventBus,
@@ -179,4 +178,3 @@ Here are a few more bonuses...
 {% hint style="success" %}
 <mark style="color:yellow;">**Bonus:**</mark> Only allow 3 gifts per person - gifts don't grow on trees!
 {% endhint %}
-

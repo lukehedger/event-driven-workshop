@@ -6,20 +6,14 @@ description: Add an event bus and start sending events to it
 
 We are going to add an integration to our API Gateway REST API that will send events to our EventBridge event bus whenever the `POST /dear-santa` endpoint receives an HTTP POST request.
 
-### Install packages
-
-```
-npm install --save-dev --save-exact @aws-cdk/aws-events
-```
-
 ### Add EventBridge event bus
 
 Update your CDK stack with an event bus:
 
 ```typescript
-import { Construct, Stack, StackProps } from "@aws-cdk/core";
-import { RestApi } from "@aws-cdk/aws-apigateway";
-import { EventBus } from "@aws-cdk/aws-events";
+import { Construct, Stack, StackProps } from "aws-cdk-lib";
+import { RestApi } from "aws-cdk-lib/aws-apigateway";
+import { EventBus } from "aws-cdk-lib/aws-events";
 
 export class EDAWorkshopStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -44,15 +38,16 @@ export class EDAWorkshopStack extends Stack {
 
 ### Permissions
 
-Next, we need to give our API permission to put events on the bus. Install the IAM CDK package:
-
-```
-npm install --save-dev --save-exact @aws-cdk/aws-iam
-```
-
-Then add this to your stack:
+Next, we need to give our API permission to put events on the bus. Add this to your stack:
 
 ```typescript
+import {
+  PolicyDocument,
+  PolicyStatement,
+  Role,
+  ServicePrincipal,
+} from "aws-cdk-lib/aws-iam";
+
 const apiRole = new Role(this, "EDAWorkshopAPIRole-YOUR_USER_NAME", {
   assumedBy: new ServicePrincipal("apigateway"),
   inlinePolicies: {
@@ -71,7 +66,11 @@ const apiRole = new Role(this, "EDAWorkshopAPIRole-YOUR_USER_NAME", {
 Now we can update our REST API with an [API integration](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-integration-settings.html). In our case, this will be a direct integration between API Gateway and EventBridge - any requests sent to the `POST /dear-santa` endpoint will put an event on the bus. To do this, we need to add some more imports and update the `dearSanta` method:
 
 ```typescript
-import { Integration, IntegrationType, RestApi } from "@aws-cdk/aws-apigateway";
+import {
+  Integration,
+  IntegrationType,
+  RestApi,
+} from "aws-cdk-lib/aws-apigateway";
 
 dearSanta.addMethod(
   "POST",
@@ -112,7 +111,7 @@ dearSanta.addMethod(
 );
 ```
 
-Take some time to look through this code. Note that any [method reponses](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-method-settings-method-response.html) must map to  a corresponding [integration response](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-integration-settings-integration-response.html).
+Take some time to look through this code. Note that any [method reponses](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-method-settings-method-response.html) must map to a corresponding [integration response](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-integration-settings-integration-response.html).
 
 ### Deploy CDK app
 
@@ -153,7 +152,7 @@ import {
   Model,
   RequestValidator,
   RestApi,
-} from "@aws-cdk/aws-apigateway";
+} from "aws-cdk-lib/aws-apigateway";
 
 const dearSantaRequestValidator = new RequestValidator(
   this,
