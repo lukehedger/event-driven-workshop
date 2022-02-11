@@ -12,7 +12,7 @@ We will use [Express Workflows](https://docs.aws.amazon.com/step-functions/lates
 
 ### Add state machine for LEGO gifts
 
-Wishlists that include a LEGO gift need to be sent to the LEGO Event-Driven Elves 🧝‍♂️, via another EventBridge event bus. You will need to ask the Event-Driven Elves for the central event bus ARN. And don't forget to append your _elf source_ (e.g. `elf-luke`) to the event you send so the elves know where the gift request has come from:
+Wishlists that include a LEGO gift need to be sent to the LEGO Event-Driven Elves 🧝‍♂️, via another EventBridge event bus. You will need to setup a central event bus to receive these events - this can be done via the [AWS Console](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-event-bus.html). And don't forget to append your _elf source_ (e.g. `elf-luke`) to the event you send so the elves know where the gift request has come from:
 
 ```typescript
 import {
@@ -159,7 +159,7 @@ new Rule(this, "EDAWorkshopSurpriseGiftRule-YOUR_USER_NAME", {
 
 Deploy and test one more time - check that both types of gift are processed correctly and end up where they should!
 
-Congratulations - you've saved Christmas (and built a neat event-driven architecture on AWS!) Nice work&#x20;
+Congratulations - you've saved Christmas (and built a neat event-driven architecture on AWS!) Nice work
 
 Here are a few more bonuses...
 
